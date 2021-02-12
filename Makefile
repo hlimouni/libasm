@@ -5,6 +5,7 @@ SFLAGS=-f macho64
 NAME=libasm.a
 
 SRC=ft_strlen.s \
+    ft_strcpy.s \
 
 OBJ=$(SRC:.s=.o)
 
