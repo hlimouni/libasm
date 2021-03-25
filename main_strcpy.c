@@ -5,24 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hlimouni <hlimouni@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/20 11:17:03 by hlimouni          #+#    #+#             */
-/*   Updated: 2021/03/20 17:38:46 by hlimouni         ###   ########.fr       */
+/*   Created: 2021/03/20 09:48:02 by hlimouni          #+#    #+#             */
+/*   Updated: 2021/03/20 10:00:20 by hlimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <errno.h>
+#include <stdlib.h>
 
-extern int ft_strcmp(const char *s1, const char *s2);
-int ft_strcmp_c(const char *s1, const char *s2);
+extern	char *ft_strcpy(char * dst, const char * src);
 
-int main(void)
+int	main(void)
 {
-	char *str = "alslkjfsalkj";
-	char *str2 = "alslkjfsA lkj";
-	printf("%d\n", ft_strcmp_c(str, str2));
-	printf("%d\n", ft_strcmp(str, str2));
+	char *src = "the quick brown fox jumps over the lazy dog";
+	char *dst = malloc(strlen(src) + 1);
+	char *dst_asm = malloc(strlen(src) + 1);
+
+	dst = strcpy(dst, src);
+	dst_asm = ft_strcpy(dst_asm, src);
+	printf("[%s]\n", dst_asm);
+	printf("[%s]\n", dst);
+	free(dst_asm);
+	free(dst);
 	return (0);
 }

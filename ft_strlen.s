@@ -5,12 +5,11 @@ section		.text
 
 _ft_strlen:
 	mov rax, rdi
-	mov rbx, rdi
 chars_loop:
 	cmp byte [rax], 0
 	je calc_lenght
 	inc rax
 	jmp chars_loop
 calc_lenght:
-	sub rax, rbx
+	sub rax, rdi
 	ret

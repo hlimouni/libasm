@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hlimouni <hlimouni@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/20 08:58:05 by hlimouni          #+#    #+#             */
-/*   Updated: 2021/03/20 08:58:06 by hlimouni         ###   ########.fr       */
+/*   Created: 2021/03/21 11:27:18 by hlimouni          #+#    #+#             */
+/*   Updated: 2021/03/21 11:27:53 by hlimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strcpy(char *dest, char *src)
-{
-	int		i;
+#include <stdlib.h>
 
+char	*ft_strdup(const char *str)
+{
+	char			*ptr;
+	unsigned int	i;
+
+	ptr = (char*)malloc(sizeof(char) * ft_strlen(str) + 1);
+	if (ptr == NULL)
+		return (NULL);
 	i = 0;
-	while (src[i] != '\0')
+	while (str[i])
 	{
-		dest[i] = src[i];
+		ptr[i] = str[i];
 		i++;
 	}
-	dest[i] = '\0';
-	return (dest);
+	ptr[i] = '\0';
+	return (ptr);
 }

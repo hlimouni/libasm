@@ -6,22 +6,28 @@
 ;Fifth Argument: R8
 ;Sixth Argument: R9
 
-global		_ft_strcpy
+global		_ft_strcmp
 
 section		.text
 
-_ft_strcpy:
-	mov rax, rsi
-	mov rbx, rdi
+_ft_strcmp:
+	mov rax, rdi
+	mov rbx, rsi
 chars_loop:
 	cmp byte [rax], 0
-	je zero_terminate
-	mov cl, [rax]
-	mov byte [rbx], cl
+	je calc_diff
+	cmp byte [rbx], 0
+	je calc_diff
+    mov cl, [rbx]
+	cmp byte [rax], cl
+	jne calc_diff
 	inc rax
 	inc rbx
 	jmp chars_loop
-zero_terminate:
-	mov byte [rbx], 0
-	mov rax, rdi
+calc_diff:
+    movzx r8d, byte [rbx]
+    movzx ecx, byte [rax]
+	sub ecx , r8d
+	xor rax, rax
+    mov eax, ecx
 	ret
