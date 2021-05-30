@@ -6,13 +6,14 @@
 /*   By: hlimouni <hlimouni@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 12:06:37 by hlimouni          #+#    #+#             */
-/*   Updated: 2021/03/21 12:28:00 by hlimouni         ###   ########.fr       */
+/*   Updated: 2021/05/30 15:42:44 by hlimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <unistd.h> 
 #include <stdlib.h>
+#include <errno.h>
 
 extern size_t ft_write(int fildes, const void *buf, size_t nbyte);
 

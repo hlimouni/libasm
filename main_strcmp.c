@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_strcpy.c                                      :+:      :+:    :+:   */
+/*   main_strcmp.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hlimouni <hlimouni@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/20 09:48:02 by hlimouni          #+#    #+#             */
-/*   Updated: 2021/05/30 14:18:51 by hlimouni         ###   ########.fr       */
+/*   Created: 2021/05/30 14:19:26 by hlimouni          #+#    #+#             */
+/*   Updated: 2021/05/30 14:33:37 by hlimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,14 @@
 #include <string.h>
 #include <stdlib.h>
 
-extern	char *ft_strcpy(char * dst, const char * src);
+extern	int ft_strcmp(const char *s1, const char *s2);
 
 int	main(void)
 {
-	char *src = "the quick brown fox jumps over the lazy dog";
-	char *dst = malloc(strlen(src) + 1);
-	char *dst_asm = malloc(strlen(src) + 1);
+	char *dst = "The quick brown fox jumps over the lazy dog";
+	char *src = "The quick brown fox jumps over the lazy dog";
 
-	dst = strcpy(dst, src);
-	dst_asm = ft_strcpy(dst_asm, src);
-	printf("[%s]\n", dst_asm);
-	printf("[%s]\n", dst);
-	free(dst_asm);
-	free(dst);
+	printf("[%d]\n", strcmp(src, dst));
+	printf("[%d]\n", ft_strcmp(src, dst));
 	return (0);
 }

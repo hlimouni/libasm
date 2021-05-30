@@ -19,10 +19,10 @@ _ft_write:
     jc errno_set
     ret
 errno_set:
-    mov rbx, rax
     push rax
     call ___error
-    pop rbx
-    mov [rax] , rbx
+    pop r8
+    mov [rax] , r8
     mov rax, -1
+
     ret

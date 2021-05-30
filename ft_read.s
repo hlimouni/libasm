@@ -24,4 +24,5 @@ errno_set:
     pop rbx
     mov [rax] , rbx
     mov rax, -1
+
     ret

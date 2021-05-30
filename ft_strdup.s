@@ -15,12 +15,15 @@ extern      _ft_strlen
 
 _ft_strdup:
     call _ft_strlen
-    push rdi
     inc rax
+    push rdi
 	mov rdi, rax
     call _malloc
+	cmp rax, 0
+	je return
     pop rdi
     mov rsi, rdi
     mov rdi, rax
     call _ft_strcpy
+return:
     ret
