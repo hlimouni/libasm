@@ -1,2 +1,5 @@
 *.o
 libasm_test
+libasm.a
+a.out
+.gitignore
