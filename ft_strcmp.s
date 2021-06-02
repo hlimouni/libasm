@@ -18,7 +18,7 @@ chars_loop:
 	cmp byte [rsi], 0
 	je calc_diff
     mov cl, [rsi]
-	cmp byte [rdi], cl
+	cmp [rdi], cl
 	jne calc_diff
 	inc rsi
 	inc rdi

@@ -1,5 +1,6 @@
 NASM=nasm
 AR=ar
+CC=gcc -Wall -Wextra -Werror
 ARFLAGS=rcs
 SFLAGS=-f macho64 
 NAME=libasm.a
@@ -13,6 +14,7 @@ SRC=ft_strlen.s \
 
 OBJ=$(SRC:.s=.o)
 
+.PHONY: clean fclean test re
 
 all: $(NAME)
 
@@ -27,5 +29,8 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
+
+test: all
+	$(CC) $(NAME) main.c -o test
 
 re: fclean all
