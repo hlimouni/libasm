@@ -6,7 +6,7 @@
 /*   By: hlimouni <hlimouni@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 11:17:03 by hlimouni          #+#    #+#             */
-/*   Updated: 2021/06/02 16:57:27 by hlimouni         ###   ########.fr       */
+/*   Updated: 2021/06/03 21:23:31 by hlimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,15 @@ int	main(int ac, char **av)
 	int  ret_read;
 	int ret_ft_read;
 	char *str1 = "the quick brown fox jumps over the lazy dog";
-	// char *str2 = "1337";
+	char *str2 = "1337";
 	char *str3 = "";
-	// char *str4 = "hello world";
-	// char *str5 = "hacuna matata";
+	char *str4 = "hello world";
+	char *str5 = "hacuna matata";
 
 	src = malloc(30);
 	dest = malloc(30);
-	memcpy(src, "hello world", 12);
-	memcpy(dest, "omae wa mou shindaeru!!", 24);
+	memcpy(dest, "Hello world", 12);
+	memcpy(src, "Lorem ipsum dolor sit amet", 24);
 
 	if (ac == 2)
 	{
@@ -55,37 +55,45 @@ int	main(int ac, char **av)
 		else if (ft_strcmp(av[1], "ft_strcpy") == 0)
 		{
 			printf("\n-- ft_strcpy --\n\n");
-			printf("before :\n\tsrc : %s, dest : %s\n",
-					src, dest);
+			printf("before :\nsrc : %s, dest : %s\n", src, dest);
 			ret = ft_strcpy(dest, src);
-			printf("after :\n\tsrc : %s, dest : %s\nret : %s\n", src, dest, ret);
+			printf("after :\nsrc : %s, dest : %s\nret : %s\n", src, dest, ret);
 		}
 		else if (ft_strcmp(av[1], "ft_strcmp") == 0)
 		{
 			printf("\n-- ft_strcmp --\n\n");
-			dest[0] = 'w';
-			printf("ret : %d\n", ft_strcmp(src, dest));
-			printf("org : %d\n", strcmp(src, dest));
-	
-			printf("ret : %d\n", ft_strcmp("hello", "hello"));
-			printf("org : %d\n", strcmp("hello", "hello"));
-	
-			printf("ret : %d\n", ft_strcmp("helfo", "hello"));
-			printf("org : %d\n", strcmp("helfo", "hello"));
-	
-			printf("ret : %d\n", ft_strcmp("hello", "helfo"));
-			printf("org : %d\n", strcmp("hello", "helfo"));
-	
-			printf("ret : %d\n", ft_strcmp("hell", "hello"));
-			printf("org : %d\n", strcmp("hell", "hello"));
-	
-			printf("ret : %d\n", ft_strcmp("hello", "hell"));
-			printf("org : %d\n", strcmp("hello", "hell"));
+			printf("ft_strcmp : %d\n", ft_strcmp(src, dest));
+			printf("strcmp : %d\n", strcmp(src, dest));
+			
+			printf("ft_strcmp : %d\n", ft_strcmp(str1, str2));
+			printf("strcmp : %d\n", strcmp(str1, str2));
+			
+			printf("ft_strcmp : %d\n", ft_strcmp(str3, str1));
+			printf("strcmp : %d\n", strcmp(str3, str1));
+			
+			printf("ft_strcmp : %d\n", ft_strcmp(str1, str3));
+			printf("strcmp : %d\n", strcmp(str1, str3));
+			
+			printf("ft_strcmp : %d\n", ft_strcmp(str4, str5));
+			printf("strcmp : %d\n", strcmp(str4, str5));
+			
 		}
 		else if (ft_strcmp(av[1], "ft_write") == 0)
 		{
 			printf("\n-- ft_write --\n\n");
+			fd = open("./file", O_RDONLY | O_CREAT);
 			errno = 0;
+			printf("write : %ld", write(fd, "hello!\n", 7));
+			printf(", errno : %d\n", errno);
+			perror("write's error");
+			errno = 0;
+			printf("ft_write : %ld", ft_write(fd, "hello!\n", 7));
+			printf(", errno : %d\n", errno);
+			perror("ft_write's error");
+			close(fd);
+			
+			errno = 0;
+			printf("\n");
 			printf("write : %ld", write(1, "hello!\n", 7));
 			printf(", errno : %d\n", errno);
 			errno = 0;
@@ -95,26 +103,36 @@ int	main(int ac, char **av)
 		else if (ft_strcmp(av[1], "ft_read") == 0)
 		{
 			printf("\n-- ft_read --\n\n");
-			fd = open("./Makefile", O_RDONLY);
+			
+			bzero(dest, 30);
+			bzero(src, 30);
+			
+			fd = open("./ft_read.s", O_RDONLY);
 			errno = 0;
 			ret_read = read(fd, src, 18);
 			close(fd);
-			printf("read : %s, ret : %d, errno : %d\n", src, ret_read, errno);
-			fd = open("./Makefile", O_RDONLY);
+			printf("read : \"%s\", ret : %d, errno : %d\n\n", src, ret_read, errno);
+			
+			fd = open("./ft_read.s", O_RDONLY);
 			errno = 0;
 			ret_ft_read = ft_read(fd, dest, 18);
 			close(fd);
-			printf("ft_read : %s, ret : %d, errno : %d\n", dest, ret_ft_read, errno);
-			fd = open("./Makefileqsdf", O_RDONLY);
+			printf("ft_read : \"%s\", ret : %d, errno : %d\n\n", dest, ret_ft_read, errno);
+
+			fd = open("./ft_read.sqsdf", O_RDONLY);
+			bzero(dest, 30);
+			bzero(src, 30);
 			errno = 0;
 			ret_read = read(fd, src, 18);
+			perror("read's error");
 			close(fd);
-			printf("read : %s, ret : %d, errno : %d\n", src, ret_read, errno);
-			fd = open("./Makefileqsdf", O_RDONLY);
+			printf("read : \"%s\", ret : %d, errno : %d\n\n", src, ret_read, errno);
+			fd = open("./ft_read.sqsdf", O_RDONLY);
 			errno = 0;
 			ret_ft_read = ft_read(fd, dest, 18);
+			perror("ft_read's error");
 			close(fd);
-			printf("ft_read : %s, ret : %d, errno : %d\n", dest, ret_ft_read, errno);
+			printf("ft_read : \"%s\", ret : %d, errno : %d\n\n", dest, ret_ft_read, errno);
 		}
 		else if (ft_strcmp(av[1], "ft_strdup") == 0)
 		{

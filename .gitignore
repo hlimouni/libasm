@@ -3,3 +3,5 @@ libasm_test
 libasm.a
 a.out
 .gitignore
+test
+.gitignore
