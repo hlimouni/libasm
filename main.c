@@ -6,7 +6,7 @@
 /*   By: hlimouni <hlimouni@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 11:17:03 by hlimouni          #+#    #+#             */
-/*   Updated: 2021/06/03 21:23:31 by hlimouni         ###   ########.fr       */
+/*   Updated: 2021/06/04 10:38:41 by hlimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,11 +138,24 @@ int	main(int ac, char **av)
 		{
 			printf("\n-- ft_strdup --\n\n");
 			errno = 0;
-			char *duplicated_str = ft_strdup("hello world");
-			if (duplicated_str)
-				printf("%p : %s, errno : %d\n", duplicated_str, duplicated_str, errno);
-			else
-				printf("%p, errno : %d\n", duplicated_str, errno);
+			char *dup_str = ft_strdup("hello world");
+			
+			if (dup_str == NULL)
+			{
+				perror("malloc in ft_strdup");
+				return (0);
+			}
+			printf("%p : duplicated string is :\"%s\", errno : %d\n", dup_str, dup_str, errno);
+
+			char *dup_str2 = ft_strdup(str1);
+			if (dup_str2 == NULL)
+			{
+				perror("malloc in ft_strdup");
+				return (0);
+			}
+			printf("%p : duplicated string is :\"%s\", errno : %d\n", dup_str2, dup_str2, errno);
+			free(dup_str);
+			free(dup_str2);
 		}
 		else
 			printf("Example usage:\n./test ft_strlen\n");
